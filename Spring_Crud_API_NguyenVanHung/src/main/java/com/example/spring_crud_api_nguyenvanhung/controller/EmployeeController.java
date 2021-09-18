@@ -1,12 +1,11 @@
 package com.example.spring_crud_api_nguyenvanhung.controller;
 
-import com.example.spring_crud_api_nguyenvanhung.dto.EmployeeDTO;
 import com.example.spring_crud_api_nguyenvanhung.entity.Employee;
+import com.example.spring_crud_api_nguyenvanhung.error.EmployeeNotFoundException;
 import com.example.spring_crud_api_nguyenvanhung.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -18,31 +17,25 @@ public class EmployeeController {
     public Employee saveEmployee(@RequestBody Employee employee) {
         return employeeService.saveEmployee(employee);
     }
+
     @GetMapping("/employees")
-    public List<Employee> getAllEmployees(){
+    public List<Employee> getAllEmployees() {
         return employeeService.getAllEmployees();
     }
+
     @GetMapping("/employees/{id}")
-    public Employee getEmployeeById(@PathVariable("id") Long employeeId){
+    public Employee getEmployeeById(@PathVariable("id") Long employeeId) throws EmployeeNotFoundException {
         return employeeService.getEmployeeById(employeeId);
     }
+
     @PutMapping("/employees/{id}")
-    public Employee updateEmployeeById(@PathVariable("id") Long employeeId,@RequestBody Employee employee){
-        return  employeeService.updateEmployeeById(employeeId,employee);
-    }
-    @DeleteMapping("/employees/{id}")
-    public String deleteById(@PathVariable("id") Long employeeId){
-        employeeService.deleteById(employeeId);
-        return "Delete Sucessfully!";
+    public Employee updateEmployeeById(@PathVariable("id") Long employeeId, @RequestBody Employee employee) {
+        return employeeService.updateEmployeeById(employeeId, employee);
     }
 
-    @GetMapping("/employeesDTO")
-    public List<EmployeeDTO> getListUsers(){
-        List<Employee> list= employeeService.getAllEmployees();
-        List<EmployeeDTO> list1= new ArrayList<>();
-        for (Employee employee:list) {
-            list1.add(new EmployeeDTO(employee));
-        }
-        return list1;
+    @DeleteMapping("/employees/{id}")
+    public String deleteById(@PathVariable("id") Long employeeId) {
+        employeeService.deleteById(employeeId);
+        return "Delete Sucessfully!";
     }
 }
