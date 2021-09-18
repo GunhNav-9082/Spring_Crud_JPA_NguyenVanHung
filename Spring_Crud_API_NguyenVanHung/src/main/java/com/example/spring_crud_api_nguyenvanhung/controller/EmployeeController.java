@@ -1,10 +1,12 @@
 package com.example.spring_crud_api_nguyenvanhung.controller;
 
+import com.example.spring_crud_api_nguyenvanhung.dto.EmployeeDTO;
 import com.example.spring_crud_api_nguyenvanhung.entity.Employee;
 import com.example.spring_crud_api_nguyenvanhung.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -32,5 +34,15 @@ public class EmployeeController {
     public String deleteById(@PathVariable("id") Long employeeId){
         employeeService.deleteById(employeeId);
         return "Delete Sucessfully!";
+    }
+
+    @GetMapping("/employeesDTO")
+    public List<EmployeeDTO> getListUsers(){
+        List<Employee> list= employeeService.getAllEmployees();
+        List<EmployeeDTO> list1= new ArrayList<>();
+        for (Employee employee:list) {
+            list1.add(new EmployeeDTO(employee));
+        }
+        return list1;
     }
 }

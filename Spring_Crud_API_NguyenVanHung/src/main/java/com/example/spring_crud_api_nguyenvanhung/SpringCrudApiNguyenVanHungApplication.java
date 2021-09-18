@@ -28,7 +28,7 @@ public class SpringCrudApiNguyenVanHungApplication {
         return (args) -> {
             insertEmployees(repository);
             System.out.println(repository.findAll());
-            System.out.println(repository.findEmployeeByLastName("Dat"));
+            System.out.println(repository.findEmployeeByLastName("Hung"));
         };
     }
 }

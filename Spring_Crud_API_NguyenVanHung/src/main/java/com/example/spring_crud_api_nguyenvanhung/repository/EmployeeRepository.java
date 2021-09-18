@@ -1,7 +1,6 @@
 package com.example.spring_crud_api_nguyenvanhung.repository;
 
 import com.example.spring_crud_api_nguyenvanhung.entity.Employee;
-import com.example.spring_crud_api_nguyenvanhung.entity.Employee;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
